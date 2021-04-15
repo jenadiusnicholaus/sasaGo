@@ -18,7 +18,7 @@ ICON_LABEL_CHOICE = (
 
 
 class Vehicle(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    id = models.BigAutoField(primary_key=True, editable=False)
     vehicle_type = models.CharField(choices=SERVICE_TYPE, max_length=20)
     icon_label = models.CharField(max_length=20, choices=ICON_LABEL_CHOICE, null=True)
     description = models.TextField()
@@ -32,7 +32,8 @@ class Vehicle(models.Model):
 
 
 class BookedVehicle(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    id = models.BigAutoField(primary_key=True, editable=False)
+
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='users')
     vehicle = models.ForeignKey(Vehicle, on_delete=models.SET_NULL, null=True)
     created_at = models.DateTimeField(default=timezone.now, null=True)
@@ -45,7 +46,7 @@ class BookedVehicle(models.Model):
 
 
 class Bookings(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    id = models.BigAutoField(primary_key=True, editable=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='booked_by')
     vehicles = models.ManyToManyField(BookedVehicle, related_name='List_booking', )
     created_at = models.DateTimeField(default=timezone.now, null=True)
@@ -62,7 +63,7 @@ class Bookings(models.Model):
 class CargoInfo(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='booking_user_info', null=True)
-    booking=models.ForeignKey(Bookings, on_delete=models.SET_NULL, null=True)
+    booking = models.ForeignKey(Bookings, on_delete=models.SET_NULL, null=True)
     cargo_from = models.CharField(max_length=200, null=True)
     to = models.CharField(max_length=200, null=True)
     from_Address = models.CharField(max_length=200, null=True)
@@ -71,6 +72,9 @@ class CargoInfo(models.Model):
     district = models.CharField(max_length=200, null=True)
     town = models.CharField(max_length=200, null=True)
     created_at = models.DateTimeField(default=timezone.now, null=True)
+
+    def __unicode__(self):
+        return self.id
 
     class Meta:
         verbose_name_plural = 'Cargo information'
