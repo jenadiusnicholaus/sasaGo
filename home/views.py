@@ -1,3 +1,5 @@
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import DetailView
 from django.views.generic.base import View
@@ -25,6 +27,7 @@ class VehicleDetails(View):
         template_name = 'home/vehicle_details.html'
         return render(request, template_name=template_name, context=context)
 
+    @login_required
     def post(self, request, pk):
         vehicle = get_object_or_404(Vehicle, pk=pk)
         add_to_booking, created = BookedVehicle.objects.get_or_create(vehicle=vehicle, user=request.user)
@@ -55,13 +58,14 @@ class VehicleDetails(View):
                     cargo_info.district = district
                     cargo_info.save()
 
-                    print('form is ok,Which form')
+                    messages.success(request, " Your Booking information is updated.")
                     return redirect("/")
                 else:
-                    print('Which form')
+
                     return redirect("/")
             else:
                 booking.vehicles.add(add_to_booking)
+                messages.success(request, "You Booking is updated.")
                 return redirect("/")
         else:
             booking = Bookings.objects.create(user=request.user)
@@ -69,7 +73,6 @@ class VehicleDetails(View):
 
             form = BookingForm(request.POST)
             if form.is_valid():
-                print(form.data)
                 cargo_from = form.cleaned_data.get('cargo_from')
                 to = form.cleaned_data.get('to')
                 fromAddress = form.cleaned_data.get('fromAddress')
@@ -84,6 +87,7 @@ class VehicleDetails(View):
                     from_Address=fromAddress, to_Address=toAddress,
                     Region=region, district=district)
 
-                print('out of reach')
+                messages.success(request, f"Your booking is done  .")
                 return redirect("/")
+
             return redirect('/')

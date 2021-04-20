@@ -22,6 +22,28 @@
                                         <span class="pre-title m-0">Delivery Services</span>
                                         PACKAGE DELIVERY
                                     </h1>
+                                    <div class="row">
+
+
+                                        <div class="col-sm-12">
+                                            {% if messages %}
+                                                <ul class="messages" >
+                                                    {% for message in messages %}
+                                                   {% if message.tags %}
+
+                                                     <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+                                                                   {% endif %}
+                                                          <strong>Hi there!</strong> {{ message }} welcome again.
+                                                          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                          </button>
+                                                         </div>
+
+                                                    {% endfor %}
+                                                </ul>
+                                            {% endif %}
+                                        </div>
+                                    </div>
                                     <p data-aos="zoom-in" data-aos-delay="2400" class="description">Fractional or exclusive package delivery , with small, medium and large vehicles.</p>
 
                                     <!-- Action -->
