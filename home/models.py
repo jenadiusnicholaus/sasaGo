@@ -61,7 +61,7 @@ class Bookings(models.Model):
 
 
 class CargoInfo(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    id = models.BigAutoField(primary_key=True, editable=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='booking_user_info', null=True)
     booking = models.ForeignKey(Bookings, on_delete=models.SET_NULL, null=True)
     cargo_from = models.CharField(max_length=200, null=True)

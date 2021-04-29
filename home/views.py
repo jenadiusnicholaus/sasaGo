@@ -27,7 +27,7 @@ class VehicleDetails(View):
         template_name = 'home/vehicle_details.html'
         return render(request, template_name=template_name, context=context)
 
-    @login_required
+    # @login_required
     def post(self, request, pk):
         vehicle = get_object_or_404(Vehicle, pk=pk)
         add_to_booking, created = BookedVehicle.objects.get_or_create(vehicle=vehicle, user=request.user)
@@ -37,7 +37,7 @@ class VehicleDetails(View):
             if booking.vehicles.filter(vehicle__pk=vehicle.pk).exists():
                 form = BookingForm(request.POST)
                 if form.is_valid():
-                    print(form.data)
+
                     cargo_from = form.cleaned_data.get('cargo_from')
                     to = form.cleaned_data.get('to')
                     fromAddress = form.cleaned_data.get('fromAddress')
@@ -47,6 +47,8 @@ class VehicleDetails(View):
                     town = form.cleaned_data.get('town')
 
                     cargo_info = CargoInfo()
+
+                    cargo_info .user = request.user
                     cargo_info.booking = booking
                     cargo_info.vehicle = vehicle
                     cargo_info.cargo_from = cargo_from
