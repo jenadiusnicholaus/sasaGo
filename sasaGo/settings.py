@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -131,9 +133,17 @@ STATICFILES_DIRS = [
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
+<<<<<<< HEAD
 
 
 
 EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
 EMAIL_FILE_PATH = BASE_DIR / "sent_emails"
+=======
+AUTH_USER_MODEL = "authentication.User"
+
+
+LOGIN_URL = 'login'
+
+>>>>>>> 2c2d5d29f535de50056b0f208a25d9c2f4407a63
 

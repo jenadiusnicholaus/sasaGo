@@ -18,3 +18,16 @@ class NewUserForm(UserCreationForm):
         if commit:
             user.save()
         return user
+
+
+class UserSignUpForm(forms.Form):
+    username = forms.CharField()
+    email = forms.EmailField()
+    mobile = forms.CharField()
+    password1 = forms.CharField()
+    password2 = forms.CharField()
+
+
+class LoginForm(forms.Form):
+    username = forms.EmailField()
+    password = forms.CharField()

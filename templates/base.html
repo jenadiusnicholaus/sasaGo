@@ -124,6 +124,12 @@
                 </div>
             </nav>
 
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> 2c2d5d29f535de50056b0f208a25d9c2f4407a63
             <!-- Navbar -->
             <nav class="navbar navbar-expand navbar-fixed sub">
                 <div class="container header">
@@ -168,9 +174,27 @@
                     <!-- Navbar Icons -->
                     <ul class="navbar-nav icons">
                         <li class="nav-item">
-                            <a href="#" class="nav-link" data-toggle="modal" data-target="#sign">
+                            {% if user.is_authenticated %}
+                            <div class="btn-group">
+
+                                 <a style ="margin-right: 10px;" href="#" >{{user.username}}</a>
+                                  <a type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                   <i class="fa fa-user"></i>
+                                  </a>
+                              <div class="dropdown-menu">
+                                <a style ="color: black;" class="dropdown-item" href="#">My Profile</a>
+                                <a style ="color: black;" class="dropdown-item" href="{% url 'logout'%}">Log out</a>
+
+                              </div>
+                            </div>
+                            {%else%}
+
+                             <a href="#" class="nav-link" data-toggle="modal" data-target="#sign">
                                 <i class="fa fa-user"></i>
                             </a>
+                            {% endif %}
+
+
                         </li>
                     </ul>
 
@@ -365,7 +389,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-12 p-0 input-group">
-                                        <input type="text" class="form-control" name="username" placeholder="username" required>
+                                        <input type="email" class="form-control" name="email" placeholder="example@gmail.com" required>
                                     </div>
                                     <div class="col-12 p-0 input-group">
                                         <input type="password" class="form-control" name="password" placeholder="Password" required>
@@ -406,6 +430,10 @@
                                     </div>
                                     <div class="col-12 p-0 input-group">
                                         <input type="email" class="form-control" name="email" placeholder="Email" required>
+                                    </div>
+
+                                    <div class="col-12 p-0 input-group">
+                                        <input type="text" class="form-control" name="mobile" placeholder="Phone number" required>
                                     </div>
                                     <div class="col-12 p-0 input-group">
                                         <input type="password" class="form-control" name="password1" placeholder="Password" required>
