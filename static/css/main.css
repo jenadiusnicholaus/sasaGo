@@ -1946,6 +1946,7 @@ header .navbar-expand .navbar-brand .featured .first {
 .navbar-expand .navbar-nav.items .nav-link:not(.btn):not(.title):hover,
 .navbar-expand .navbar-nav.icons .nav-link:not(.btn):not(.title):hover {
     color: var(--secondary-color);
+    
 }
 
 .navbar-expand .navbar-nav.items .nav-link.active:not(.btn):not(.title) {
