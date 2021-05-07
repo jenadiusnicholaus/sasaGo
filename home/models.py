@@ -5,9 +5,9 @@ from django.db import models
 from django.utils import timezone
 
 SERVICE_TYPE = (
-    ('motoboy', 'Motoboy'),
-    ('mintruck', 'Min Truck'),
-    ('tuck', 'Truck')
+    ('Boda Boda', 'Boda Boda'),
+    ('Van/Kirikuu', 'Van/Kirikuu'),
+    ('Truck', 'Truck')
 )
 
 ICON_LABEL_CHOICE = (

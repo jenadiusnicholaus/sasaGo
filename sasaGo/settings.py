@@ -25,7 +25,7 @@ SECRET_KEY = '1$h6y+1ue@nmc)jz5_dr^$#l=e53b4^f8ebn*sb#dyeoap!8$9'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["sasagotz.pythonanywhere.com","sasagoafrica.co.tz", "www.sasagoafrica.co.tz"]
 
 
 # Application definition
@@ -120,10 +120,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# STATICFILES_DIRS = [ BASE_DIR / 'static']
 
-STATICFILES_DIRS = [
-    BASE_DIR / 'static'
-]
+STATIC_ROOT = "/home/sasaGOtz/sasaGo/static/"
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
