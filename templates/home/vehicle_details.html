@@ -12,7 +12,7 @@
                         <a href="#" class="btn mx-auto mr-md-0 ml-md-auto outline-button">SEE ALL</a>
                     </div>
                 </div>
-                <form action="{% url 'vehicle_details' vehicle_detail.id %}"  method="post">
+                <form action="{% url 'make_booking' vehicle_detail.id %}"  method="post">
                     {%csrf_token%}
                     <div class="row justify-content-center items">
 
