@@ -1,9 +1,10 @@
 from django.contrib import admin
+from home.models import Service, Booking
+from django.contrib.auth.models import Group
 
-# Register your models here.
-from .models import Vehicle, BookedVehicle, Bookings, CargoInfo
+admin.site.unregister(Group)
 
-admin.site.register(Vehicle)
-admin.site.register(BookedVehicle)
-admin.site.register(Bookings)
-admin.site.register(CargoInfo)
+admin.site.register(Service)
+admin.site.register(Booking)
+
+

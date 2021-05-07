@@ -131,23 +131,29 @@
         <section id="features" class="section-2 odd features offers">
             <div class="container">
                 <div class="row intro">
-                    <div class="col-12 col-md-9 align-self-center text-center text-md-left">
+                    <div class="col-12 col-md-9 align-text-center self-center text-md-left">
                         <span class="pre-title m-auto ml-md-0">Package Delivery</span>
                         <h2>Main <span class="featured"><span>Services</span></span></h2>
                         <p>With all of this expertise and capability comes an unrivalled commitment to customer service. We will work hard to understand your needs in order to develop a productive, long-term partnership.</p>
                     </div>
                     <div class="col-12 col-md-3 align-self-end">
-                        <a href="#" class="btn mx-auto mr-md-0 ml-md-auto outline-button">SEE ALL</a>
+                        <!-- <a href="#" class="btn mx-auto mr-md-0 ml-md-auto outline-button">SEE ALL</a> -->
                     </div>
                 </div>
                 <div class="row justify-content-center items">
-                    {% for vehicle in vehicles %}
+                    {% for data in services %}
                     <div class="col-12 col-md-6 col-lg-4 item">
                         <div class="card">
-                             <i class="icon fas fa-{{vehicle.get_icon_label_display}}"></i>
-                            <h4>{{vehicle.get_vehicle_type_display}}</h4>
-                            <p>{{vehicle.description}}</p>
-                            <a href="{% url 'vehicle_details' vehicle.id %}"><i class="btn-icon pulse fas fas fa-arrow-right"></i></a>
+                             <i class=" bg-transparent icon fas fa-{{data.service_icon}}"></i>
+                            <h4>{{data.service_type}}</h4>
+                            <p>{{data.details}}</p>
+                           {% if user.is_authenticated %}
+                            <a href="{% url 'book_service' data.id %}"><i class="btn-icon pulse fas fas fa-arrow-right"></i></a>
+                            {% else %}
+                            <a href="#" data-toggle="modal" data-target="#sign">
+                                <i class=" btn-icon pulse fas fa-arrow-right"></i>
+                            </a>
+                            {% endif %}
                         </div>
                     </div>
                     {% endfor%}
@@ -373,7 +379,8 @@
                         </div>
                         <div class="row">
                             <div class="col-12 p-0">
-                                <form action="php/form.php" id="nexgen-simple-form" class="nexgen-simple-form">
+                                <form method="POST" action="{% url 'send_message' %}"  class="nexgen-simple-form">
+                                    {% csrf_token %}
                                     <input type="hidden" name="section" value="nexgen_form">
 
                                     <input type="hidden" name="reCAPTCHA">
@@ -409,7 +416,7 @@
                                             <span class="form-alert"></span>
                                         </div>
                                         <div class="col-12 input-group m-0 p-2">
-                                            <a class="btn primary-button">SEND</a>
+                                            <button type="submit" class="btn primary-button">SEND</button>
                                         </div>
                                     </div>
                                 </form>
